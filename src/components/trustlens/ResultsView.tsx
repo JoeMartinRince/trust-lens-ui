@@ -183,23 +183,34 @@ function SourceTraceCard() {
   );
 }
 
+interface FlagItem {
+  icon: LucideIcon;
+  badgeClass: string;
+  dotClass: string;
+  label: string;
+  desc: string;
+}
+
 function RedFlagsCard() {
-  const flags = [
+  const flags: FlagItem[] = [
     {
       icon: FileWarning,
-      color: "trust-red",
+      badgeClass: "bg-trust-red-soft text-trust-red",
+      dotClass: "bg-trust-red",
       label: "Edited with Photoshop",
       desc: "Software tag detected in metadata",
     },
     {
       icon: ShieldAlert,
-      color: "trust-orange",
+      badgeClass: "bg-trust-orange-soft text-trust-orange",
+      dotClass: "bg-trust-orange",
       label: "Inconsistent timeline",
       desc: "Create date differs from upload date",
     },
     {
       icon: AlertTriangle,
-      color: "trust-purple",
+      badgeClass: "bg-trust-purple-soft text-trust-purple",
+      dotClass: "bg-trust-purple",
       label: "No verified source",
       desc: "Could not trace to original publisher",
     },
@@ -217,18 +228,16 @@ function RedFlagsCard() {
           return (
             <div key={flag.label} className="flex items-start gap-3">
               <div
-                className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-${flag.color}-soft text-${flag.color}`}
+                className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full ${flag.badgeClass}`}
               >
-                <Icon className="h-4.5 w-4.5" />
+                <Icon className="h-4 w-4" />
               </div>
               <div className="flex-1">
                 <div className="flex items-center gap-2">
                   <span className="text-sm font-medium text-card-foreground">
                     {flag.label}
                   </span>
-                  <span
-                    className={`h-1.5 w-1.5 rounded-full bg-${flag.color}`}
-                  />
+                  <span className={`h-1.5 w-1.5 rounded-full ${flag.dotClass}`} />
                 </div>
                 <p className="text-xs text-muted-foreground">{flag.desc}</p>
               </div>
