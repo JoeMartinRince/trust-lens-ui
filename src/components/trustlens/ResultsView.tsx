@@ -9,6 +9,7 @@ import {
   RefreshCw,
   ExternalLink,
   Info,
+  type LucideIcon,
 } from "lucide-react";
 
 interface ResultsViewProps {
