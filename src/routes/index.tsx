@@ -34,10 +34,9 @@ function Index() {
   const [appState, setAppState] = useState<AppState>("upload");
 
   useEffect(() => {
-    if (appState === "loading") {
-      const timer = setTimeout(() => setAppState("results"), 3200);
-      return () => clearTimeout(timer);
-    }
+    if (appState !== "loading") return;
+    const timer = setTimeout(() => setAppState("results"), 3200);
+    return () => clearTimeout(timer);
   }, [appState]);
 
   return (
